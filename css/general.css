@@ -1,6 +1,9 @@
 /* 
 |=== Colour Palette ===|
 
+|== Ash White : #ececec ==|
+    Background colour
+
 |== Yellow : #cbff00  ==|
     Highlighting colour
     - Use for highlight, or underline of link.
@@ -23,6 +26,12 @@
 @font-face {
     font-family: 'Source Pro Sans';
     src: url('../assets/fonts/SourceCodePro-Bold.otf.woff2');
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #ececec;
 }
 .main {
     font-family: 'Source Pro Sans';
@@ -52,27 +61,6 @@
     font-family: 'Grotesk-Bold';
     font-size: 25pt;
     color: #000;
-}
-.github {
-    text-decoration: none;
-    color: #24292f;
-    font-family: 'Source Han Gothic';
-    font-size: 30pt;
-}
-.body {
-    background-color: #ececec;
-}
-.logo {
-    width: 400pt;
-    margin: auto;
-    display: block;
-}
-.welcome {
-    text-align: center;
-    color: #000;
-    line-height: 0.2;
-    font-family: 'Source Han Gothic';
-    font-size: x-large;
 }
 .dash {
     width: 150pt;

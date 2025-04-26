@@ -1,0 +1,16 @@
+html, body {
+    height: 100%;
+}
+.notfound {
+    color: #000;
+    font-size: 80pt;
+    font-family: 'Grotesk-Bold';
+    text-align: center;
+}
+.notfound_detail {
+    color: #252525;
+    font-size: 25pt;
+    font-family: 'Grotesk-Bold';
+    text-align: center;
+    line-height: 1;
+}
