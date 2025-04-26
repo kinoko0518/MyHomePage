@@ -1,0 +1,105 @@
+/* 
+|=== Colour Palette ===|
+
+|== Yellow : #cbff00  ==|
+    Highlighting colour
+    - Use for highlight, or underline of link.
+
+|== Grey Gradation  ==|
+    Blackest : #000000
+    Middle-B : #4e4e4e
+    Middle-W : #828282
+    Whitest  : #c0c0c0
+*/
+
+@font-face {
+    font-family: 'Source Han Gothic';
+    src: url('../assets/fonts/OverusedGrotesk-Medium.otf');
+}
+@font-face {
+    font-family: 'Grotesk-Bold';
+    src: url('../assets/fonts/OverusedGrotesk-ExtraBold.otf');
+}
+@font-face {
+    font-family: 'Source Pro Sans';
+    src: url('../assets/fonts/SourceCodePro-Bold.otf.woff2');
+}
+.main {
+    font-family: 'Source Pro Sans';
+    color: #292929;
+    font-size: 17pt;
+    line-height: 1.7;
+}
+.text_block {
+    margin-left: 50pt;
+    margin-right: 50pt;
+}
+.split_h {
+    display: flex;
+    width: 100%;
+}
+.h_50perc {
+    flex-grow: 1;
+    flex-basis: 50%;
+    width: 50%;
+}
+.header {
+    margin-left: 50pt;
+    display: flex;
+    align-items: center;
+}
+.header_text {
+    font-family: 'Grotesk-Bold';
+    font-size: 25pt;
+    color: #000;
+}
+.github {
+    text-decoration: none;
+    color: #24292f;
+    font-family: 'Source Han Gothic';
+    font-size: 30pt;
+}
+.body {
+    background-color: #ececec;
+}
+.logo {
+    width: 400pt;
+    margin: auto;
+    display: block;
+}
+.welcome {
+    text-align: center;
+    color: #000;
+    line-height: 0.2;
+    font-family: 'Source Han Gothic';
+    font-size: x-large;
+}
+.dash {
+    width: 150pt;
+}
+.field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20pt;
+}
+.majour_heading_container {
+    display: flex;
+    align-items: center;
+    margin-top: 100pt;
+}
+.majour_heading {
+    color: #000;
+    font-size: 35pt;
+    font-family: 'Source Han Gothic';
+}
+.heading {
+    color: #000;
+    font-size: 25pt;
+    font-family: 'Source Han Gothic';
+}
+.link {
+    color: #000;
+    text-decoration: none;
+    box-shadow: inset 0 -0.5em #cbff00;
+}
