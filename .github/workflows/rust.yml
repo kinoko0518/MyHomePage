@@ -1,50 +1,51 @@
 # .github/workflows/deploy.yml
 
-name: Deploy Dioxus Web App to GitHub Pages
+name: Deploy to GitHub Pages
 
+# mainブランチにプッシュされたときに実行
 on:
   push:
     branches:
       - main
 
+# パーミッションの設定
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # リポジトリのソースコードをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Rust
+      # Rustのツールチェインをセットアップ
+      - name: Setup Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
 
-      - name: Install cargo-binstall
-        uses: cargo-bins/cargo-binstall@main
-
+      # cargo-binstallをインストール
       - name: Install Dioxus CLI
-        run: cargo binstall dioxus-cli --no-confirm
+        run: cargo install cargo-binstall
 
-      - name: Build Dioxus Web App
-        run: dx build --platform web --release --out-dir dist
+      # Dioxus CLIをインストール
+      - name: Install Dioxus CLI
+        run: cargo binstall dioxus-cli
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      
-      - name: Upload artifact
+      # Dioxusアプリをビルド
+      - name: Build Dioxus page
+        run: dx build --platform web
+
+      # GitHub Pages用に成果物をアップロード
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
-          
+          path: ./target/dx/new-home-page/release/web/public
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -52,6 +53,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # 成果物をGitHub Pagesにデプロイ
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

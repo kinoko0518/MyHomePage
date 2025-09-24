@@ -1,12 +1,9 @@
 [application]
-name = "my-homepage"
 
 [application.asset]
 dir = "assets"
 
 [web.app]
-# Repository name
-base_path = "MyHomePage"
 # HTML title tag content
 title = "The Kinokov's Home Page"
 

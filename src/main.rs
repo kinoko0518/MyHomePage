@@ -1,10 +1,7 @@
 use dioxus::prelude::*;
 
+mod static_site_generation;
 mod view;
-
-fn main() {
-    dioxus::launch(App);
-}
 
 // My own images
 const DASH: Asset = asset!("assets/dash.png");
@@ -31,6 +28,32 @@ const RUST_ICON: Asset = asset!("assets/logos/rust.svg");
 const DIOXUS_ICON: Asset = asset!("assets/logos/dioxus.svg");
 const GODOT_ICON: Asset = asset!("assets/logos/godot.svg");
 
+fn main() {
+    dioxus::LaunchBuilder::new()
+        .with_cfg(server_only! {
+            ServeConfig::builder()
+                .incremental(
+                    IncrementalRendererConfig::new()
+                        .static_dir(
+                            std::env::current_exe()
+                                .unwrap()
+                                .parent()
+                                .unwrap()
+                                .join("public")
+                        )
+                        .clear_cache(false)
+                )
+                .enable_out_of_order_streaming()
+        })
+        .launch(App);
+}
+
+#[derive(Routable, Clone, PartialEq)]
+pub enum Route {
+    #[route("/")]
+    Main {},
+}
+
 #[component]
 fn App() -> Element {
     rsx! {
@@ -39,6 +62,15 @@ fn App() -> Element {
 
         Header {}
 
+        Router::<Route> {}
+
+        Footer {}
+    }
+}
+
+#[component]
+fn Main() -> Element {
+    rsx! {
         // Main Content
         main {
             style: "margin-left: 15%; margin-right: 15%;",
@@ -61,8 +93,6 @@ fn App() -> Element {
             Index { content: "Team Projects".to_string() }
             view::TeamProjects {}
         }
-
-        Footer {}
     }
 }
 
