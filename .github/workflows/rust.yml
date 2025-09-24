@@ -1,0 +1,68 @@
+# .github/workflows/deploy.yml
+
+name: Deploy Dioxus Web App to GitHub Pages
+
+# mainブランチにpushされたときにこのWorkflowを実行します
+on:
+  push:
+    branches:
+      - main
+
+# Workflowの実行に必要な権限を設定します
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 古いWorkflowをキャンセルして、最新のpushに対してのみ実行します
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリのコードをチェックアウトします
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Rustのツールチェーンをセットアップします
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          # wasmビルドターゲットを追加します
+          targets: wasm32-unknown-unknown
+
+      # Dioxus CLIをインストールします
+      - name: Install Dioxus CLI
+        run: cargo install dioxus-cli
+
+      # Webアプリケーションをリリースモードでビルドします
+      # 出力先は 'dist' ディレクトリになります
+      - name: Build Dioxus Web App
+        run: dx build --platform web --release
+
+      # GitHub Pagesにアップロードするためのアーティファクトを準備します
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      # ビルドされたアーティファクトをアップロードします
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 'dist' ディレクトリをアップロードします
+          path: './dist'
+          
+  deploy:
+    # buildジョブが成功したら実行されます
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # GitHub Pagesにデプロイします
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
