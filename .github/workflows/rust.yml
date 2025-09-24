@@ -35,7 +35,7 @@ jobs:
         run: cargo binstall dioxus-cli --no-confirm
 
       - name: Build Dioxus Web App
-        run: dx build --platform web --release
+        run: dx build --platform web --release --out-dir dist
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
