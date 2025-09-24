@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Source Han Gothic';
+    src: url('../assets/fonts/OverusedGrotesk-Medium.otf');
+}
+@font-face {
+    font-family: 'Grotesk-Bold';
+    src: url('../assets/fonts/OverusedGrotesk-ExtraBold.otf');
+}
+@font-face {
+    font-family: 'Source Pro Sans';
+    src: url('../assets/fonts/SourceCodePro-Bold.otf.woff2');
+}
+
+html, body {
+    height: 100%;
+}
+.notfound {
+    color: #000;
+    font-size: 80pt;
+    font-family: 'Grotesk-Bold';
+    text-align: center;
+}
+.notfound_detail {
+    color: #252525;
+    font-size: 25pt;
+    font-family: 'Grotesk-Bold';
+    text-align: center;
+    line-height: 1;
+}
