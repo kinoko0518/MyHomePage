@@ -1,12 +1,14 @@
 [application]
+name = "my-homepage"
 
 [application.asset]
 dir = "assets"
 
 [web.app]
-
+# Repository name
+base_path = "MyHomePage"
 # HTML title tag content
-title = "new-home-page"
+title = "The Kinokov's Home Page"
 
 # include `assets` in web platform
 [web.resource]
