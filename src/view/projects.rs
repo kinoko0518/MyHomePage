@@ -8,6 +8,7 @@ use dioxus::prelude::*;
 const DHARMA_SAMPLE: Asset = asset!("assets/sample_images/dharma.png");
 const RUST_3DS_SAMPLE: Asset = asset!("assets/sample_images/rust_3ds_dev.webp");
 const ETOILE_SAMPLE: Asset = asset!("assets/sample_images/etoile.png");
+const BOXFISH_OVERFLOW_SAMPLE: Asset = asset!("assets/sample_images/bfo.png");
 
 #[component]
 pub fn Project(
@@ -77,6 +78,23 @@ pub fn Project(
 }
 
 #[component]
+pub fn TeamLogo(img: Asset, link: String) -> Element {
+    rsx! {
+        a {
+            href: link,
+            img {
+                src: XENON_LOGO,
+                height: "65pt",
+                style: "
+                    margin-top: 30pt;
+                    margin-bottom: 10pt;
+                "
+            }
+        }
+    }
+}
+
+#[component]
 pub fn PrivateProjects() -> Element {
     let rust_stack = (RUST_ICON, "https://www.rust-lang.org/".to_string());
     let dioxus_stack = (DIOXUS_ICON, "https://dioxuslabs.com/".to_string());
@@ -120,9 +138,9 @@ pub fn PrivateProjects() -> Element {
 #[component]
 pub fn TeamProjects() -> Element {
     rsx! {
-        img {
-            src: XENON_LOGO,
-            height: "65pt"
+        TeamLogo {
+            img: XENON_LOGO,
+            link: "https://xe-non.com/",
         }
         Project {
             project_name: "Etoile".to_string(),
@@ -134,9 +152,9 @@ pub fn TeamProjects() -> Element {
             cover: ETOILE_SAMPLE,
             link: "https://xe-non.com/".to_string()
         }
-        img {
-            src: XENON_PP_LOGO,
-            height: "65pt"
+        TeamLogo {
+            img: XENON_PP_LOGO,
+            link: "https://pp.xe-non.com/"
         }
         div {
             style: "
@@ -151,7 +169,7 @@ pub fn TeamProjects() -> Element {
                 },
                 icons: vec![(GITHUB_ICON, "https://github.com/NIT-Tomakomai-2024J/BoxFishOverflow".to_string())],
                 stacks: vec![(GODOT_ICON, "https://godotengine.org".to_string())],
-                cover: ETOILE_SAMPLE,
+                cover: BOXFISH_OVERFLOW_SAMPLE,
                 link: "https://pp.xe-non.com/".to_string()
             }
             Project {

@@ -1,28 +1,5 @@
-# Development
+> [!CAUTION]
+> Notice; It's on constructing!
 
-Your new bare-bones project includes minimal organization with a single `main.rs` file and a few assets.
-
-```
-project/
-├─ assets/ # Any assets that are used by the app should be placed here
-├─ src/
-│  ├─ main.rs # main.rs is the entry point to your application and currently contains all components for the app
-├─ Cargo.toml # The Cargo.toml file defines the dependencies and feature flags for your project
-```
-
-
-
-### Serving Your App
-
-Run the following command in the root of your project to start developing with the default platform:
-
-```bash
-dx serve --platform web
-```
-
-To run for a different platform, use the `--platform platform` flag. E.g.
-```bash
-dx serve --platform desktop
-```
-
-
+# It's my own homepage's source code!
+Welcome here, if you only have interest in the page, visit [here](https://kinoko0518.github.io/MyHomePage/)

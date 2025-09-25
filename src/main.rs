@@ -4,29 +4,29 @@ mod static_site_generation;
 mod view;
 
 // My own images
-const DASH: Asset = asset!("assets/dash.png");
-const PLUS: Asset = asset!("assets/plus.svg");
+const DASH: Asset = asset!("/assets/dash.png");
+const PLUS: Asset = asset!("/assets/plus.svg");
 
 // CSS
-const GENERAL_CSS: Asset = asset!("assets/css/general.css");
-const TOP_CSS: Asset = asset!("assets/css/top_page.css");
+const GENERAL_CSS: Asset = asset!("/assets/css/general.css");
+const TOP_CSS: Asset = asset!("/assets/css/top_page.css");
 
 // My own logos
-const K_LOGO: Asset = asset!("assets/icon_k.png");
-const MODERN_LOGO: Asset = asset!("assets/logo_modern.png");
+const K_LOGO: Asset = asset!("/assets/icon_k.png");
+const MODERN_LOGO: Asset = asset!("/assets/logo_modern.png");
 
 // Outer logos
-const GITHUB_LOGO: Asset = asset!("assets/logos/github.png");
-const NOTE_LOGO: Asset = asset!("assets/logos/note.svg");
-const XENON_LOGO: Asset = asset!("assets/logos/xenon.svg");
-const XENON_PP_LOGO: Asset = asset!("assets/logos/xenon++.svg");
+const GITHUB_LOGO: Asset = asset!("/assets/logos/github.png");
+const NOTE_LOGO: Asset = asset!("/assets/logos/note.svg");
+const XENON_LOGO: Asset = asset!("/assets/logos/xenon.svg");
+const XENON_PP_LOGO: Asset = asset!("/assets/logos/xenon++.svg");
 
 // Outer icons
-const GITHUB_ICON: Asset = asset!("assets/logos/github_icon.svg");
-const NOTE_ICON: Asset = asset!("assets/logos/note_icon.svg");
-const RUST_ICON: Asset = asset!("assets/logos/rust.svg");
-const DIOXUS_ICON: Asset = asset!("assets/logos/dioxus.svg");
-const GODOT_ICON: Asset = asset!("assets/logos/godot.svg");
+const GITHUB_ICON: Asset = asset!("/assets/logos/github_icon.svg");
+const NOTE_ICON: Asset = asset!("/assets/logos/note_icon.svg");
+const RUST_ICON: Asset = asset!("/assets/logos/rust.svg");
+const DIOXUS_ICON: Asset = asset!("/assets/logos/dioxus.svg");
+const GODOT_ICON: Asset = asset!("/assets/logos/godot.svg");
 
 fn main() {
     dioxus::LaunchBuilder::new()
@@ -61,9 +61,7 @@ fn App() -> Element {
         document::Stylesheet { href: TOP_CSS }
 
         Header {}
-
         Router::<Route> {}
-
         Footer {}
     }
 }

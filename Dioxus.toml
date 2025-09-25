@@ -18,6 +18,9 @@ script = []
 
 [web.resource.dev]
 
+[web.application]
+base_path = "https://kinoko0518.github.io/MyHomePage/"
+
 # Javascript code file
 # serve: [dev-server] only
 script = []
