@@ -30,7 +30,7 @@ jobs:
 
       # cargo-binstallをインストール
       - name: Install Dioxus CLI
-        run: cargo install cargo-binstall
+        run: curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
       # Dioxus CLIをインストール
       - name: Install Dioxus CLI
@@ -38,7 +38,7 @@ jobs:
 
       # Dioxusアプリをビルド
       - name: Build Dioxus page
-        run: dx build --platform web
+        run: dx bundle --platform web
 
       # GitHub Pages用に成果物をアップロード
       - name: Upload Pages artifact
