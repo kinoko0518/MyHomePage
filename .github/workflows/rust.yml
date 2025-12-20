@@ -38,7 +38,7 @@ jobs:
 
       # Dioxusアプリをビルド
       - name: Build Dioxus page
-        run: dx bundle --platform web --ssg
+        run: pwsh ./build.ps1 -Release
 
       # GitHub Pages用に成果物をアップロード
       - name: Upload Pages artifact

@@ -5,18 +5,19 @@ use crate::{
 use dioxus::prelude::*;
 
 // Sample image
-const DHARMA_SAMPLE: Asset = asset!("assets/sample_images/dharma.png");
-const RUST_3DS_SAMPLE: Asset = asset!("assets/sample_images/rust_3ds_dev.webp");
-const ETOILE_SAMPLE: Asset = asset!("assets/sample_images/etoile.png");
-const BOXFISH_OVERFLOW_SAMPLE: Asset = asset!("assets/sample_images/bfo.png");
+// Sample image
+const DHARMA_SAMPLE: &str = "assets/sample_images/dharma.png";
+const RUST_3DS_SAMPLE: &str = "assets/sample_images/rust_3ds_dev.webp";
+const ETOILE_SAMPLE: &str = "assets/sample_images/etoile.png";
+const BOXFISH_OVERFLOW_SAMPLE: &str = "assets/sample_images/bfo.png";
 
 #[component]
 pub fn Project(
     project_name: String,
     detail: Element,
-    icons: Vec<(Asset, String)>,
-    stacks: Vec<(Asset, String)>,
-    cover: Asset,
+    icons: Vec<(String, String)>,
+    stacks: Vec<(String, String)>,
+    cover: String,
     link: String,
 ) -> Element {
     rsx! {
@@ -78,7 +79,7 @@ pub fn Project(
 }
 
 #[component]
-pub fn TeamLogo(img: Asset, link: String) -> Element {
+pub fn TeamLogo(img: String, link: String) -> Element {
     rsx! {
         a {
             href: link,
@@ -96,8 +97,8 @@ pub fn TeamLogo(img: Asset, link: String) -> Element {
 
 #[component]
 pub fn PrivateProjects() -> Element {
-    let rust_stack = (RUST_ICON, "https://www.rust-lang.org/".to_string());
-    let dioxus_stack = (DIOXUS_ICON, "https://dioxuslabs.com/".to_string());
+    let rust_stack = (RUST_ICON.to_string(), "https://www.rust-lang.org/".to_string());
+    let dioxus_stack = (DIOXUS_ICON.to_string(), "https://dioxuslabs.com/".to_string());
 
     rsx! {
         div {
@@ -112,10 +113,10 @@ pub fn PrivateProjects() -> Element {
                     p { "テスト勉強用に作った一問一答アプリです。問題形式は選択式/記述式で、TOML形式で問題を作ります。" }
                 },
                 icons: vec![
-                    (GITHUB_ICON, "https://github.com/kinoko0518/DharmaNava".to_string())
+                    (GITHUB_ICON.to_string(), "https://github.com/kinoko0518/DharmaNava".to_string())
                 ],
                 stacks: vec![rust_stack.clone(), dioxus_stack.clone()],
-                cover: DHARMA_SAMPLE,
+                cover: DHARMA_SAMPLE.to_string(),
                 link: "https://github.com/kinoko0518/DharmaNava".to_string()
             }
             Project {
@@ -124,11 +125,11 @@ pub fn PrivateProjects() -> Element {
                     p { "Rustで3DS向けの開発を行うためのチュートリアルです。もともとC言語向けのライブラリであるdevkitProのRust用ラッパーを使っています。noteで連載中です。" }
                 },
                 icons: vec![
-                    (GITHUB_ICON, "https://github.com/kinoko0518/Rust-3DS-Example".to_string()),
-                    (NOTE_ICON, "https://note.com/takedabosciola/m/m24e853602327".to_string())
+                    (GITHUB_ICON.to_string(), "https://github.com/kinoko0518/Rust-3DS-Example".to_string()),
+                    (NOTE_ICON.to_string(), "https://note.com/takedabosciola/m/m24e853602327".to_string())
                 ],
                 stacks: vec![rust_stack.clone()],
-                cover: RUST_3DS_SAMPLE,
+                cover: RUST_3DS_SAMPLE.to_string(),
                 link: "https://note.com/takedabosciola/m/m24e853602327".to_string()
             }
         }
@@ -139,7 +140,7 @@ pub fn PrivateProjects() -> Element {
 pub fn TeamProjects() -> Element {
     rsx! {
         TeamLogo {
-            img: XENON_LOGO,
+            img: XENON_LOGO.to_string(),
             link: "https://xe-non.com/",
         }
         Project {
@@ -148,12 +149,12 @@ pub fn TeamProjects() -> Element {
                 p {"ゲームキューブで妖怪や鬼をブン殴るゲームです。現在はプロジェクトを凍結中です。"}
             },
             icons: vec![],
-            stacks: vec![(GODOT_ICON, "https://godotengine.org".to_string())],
-            cover: ETOILE_SAMPLE,
+            stacks: vec![(GODOT_ICON.to_string(), "https://godotengine.org".to_string())],
+            cover: ETOILE_SAMPLE.to_string(),
             link: "https://xe-non.com/".to_string()
         }
         TeamLogo {
-            img: XENON_PP_LOGO,
+            img: XENON_PP_LOGO.to_string(),
             link: "https://pp.xe-non.com/"
         }
         div {
@@ -167,9 +168,9 @@ pub fn TeamProjects() -> Element {
                 detail: rsx! {
                     p {"4bitのレジスタを持つハコフグくんを動かして論理ゲートをくぐり、特定のビットパターンを作るゲームです。"}
                 },
-                icons: vec![(GITHUB_ICON, "https://github.com/NIT-Tomakomai-2024J/BoxFishOverflow".to_string())],
-                stacks: vec![(GODOT_ICON, "https://godotengine.org".to_string())],
-                cover: BOXFISH_OVERFLOW_SAMPLE,
+                icons: vec![(GITHUB_ICON.to_string(), "https://github.com/NIT-Tomakomai-2024J/BoxFishOverflow".to_string())],
+                stacks: vec![(GODOT_ICON.to_string(), "https://godotengine.org".to_string())],
+                cover: BOXFISH_OVERFLOW_SAMPLE.to_string(),
                 link: "https://pp.xe-non.com/".to_string()
             }
             Project {
@@ -177,9 +178,9 @@ pub fn TeamProjects() -> Element {
                 detail: rsx! {
                     p {"冷戦下ソヴィエトの原子力研究所、危険物が溢れるキッチンで料理を作り、理不尽クッキングを生存せよ！"}
                 },
-                icons: vec![(GITHUB_ICON, "https://github.com/netgame-nittc-2025-2/Cooking-is-Chemistry".to_string())],
-                stacks: vec![(GODOT_ICON, "https://godotengine.org".to_string())],
-                cover: ETOILE_SAMPLE,
+                icons: vec![(GITHUB_ICON.to_string(), "https://github.com/netgame-nittc-2025-2/Cooking-is-Chemistry".to_string())],
+                stacks: vec![(GODOT_ICON.to_string(), "https://godotengine.org".to_string())],
+                cover: ETOILE_SAMPLE.to_string(),
                 link: "https://pp.xe-non.com/".to_string()
             }
         }
