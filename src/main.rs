@@ -51,6 +51,7 @@ fn main() {
 #[derive(Routable, Clone, PartialEq)]
 pub enum Route {
     #[route("/")]
+    #[route("/MyHomePage/")]
     Main {},
 }
 

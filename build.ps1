@@ -39,8 +39,8 @@ if (-not (Test-Path $targetHtml)) {
 
 Write-Host "Fixing asset paths in $targetHtml..."
 $content = Get-Content $targetHtml -Raw
-# Replace /./ with ./
-$content = $content -replace '/\./', './'
+# Replace /./ with ./ and /MyHomePage/ with ./
+$content = $content -replace '/\./', './' -replace '/MyHomePage/', './'
 Set-Content $targetHtml $content
 
 Write-Host "Build and Fix Complete!"
