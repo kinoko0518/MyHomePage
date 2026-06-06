@@ -24,6 +24,7 @@ jobs:
       - name: Build and upload to GitHub Pages
         uses: getzola/github-pages@v1
         with:
+          zola_version: v0.22.1
           output_dir: public
 
   deploy:
