@@ -1,5 +1,5 @@
-> [!CAUTION]
-> Notice; It's on constructing!
+# The Kinokov's Home Page
 
-# It's my own homepage's source code!
-Welcome here, if you only have interest in the page, visit [here](https://kinoko0518.github.io/MyHomePage/)
+My personal homepage, built with [Zola](https://www.getzola.org/).
+
+🌐 [Visit here](https://kinoko0518.github.io/MyHomePage/)

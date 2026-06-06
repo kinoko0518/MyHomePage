@@ -1,0 +1,10 @@
+base_url = "https://kinoko0518.github.io/MyHomePage"
+title = "The Kinokov's Home Page"
+description = "Kinokov Shotaskovich's personal homepage"
+default_language = "ja"
+minify_html = true
+generate_sitemap = true
+generate_robots_txt = true
+
+[markdown]
+smart_punctuation = true

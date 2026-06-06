@@ -1,0 +1,22 @@
+{% macro project_start(name, link, cover, description) %}
+<div class="project">
+    <img class="sample" src="{{ get_url(path=cover) }}">
+    <a style="font-size: 15pt; font-weight: 800;"
+       href="{{ link }}"
+       class="link">{{ name }}</a>
+    <p>{{ description }}</p>
+{% endmacro %}
+
+{% macro project_end() %}
+</div>
+{% endmacro %}
+
+{% macro icon(img, link) %}
+<a href="{{ link }}">
+    <img class="icon" src="{{ get_url(path=img) }}">
+</a>
+{% endmacro %}
+
+{% macro stack_separator() %}
+<img src="{{ get_url(path='images/plus.svg') }}" width="10pt" height="10pt">
+{% endmacro %}
