@@ -52,3 +52,25 @@
 .project .link {
     align-self: flex-start;
 }
+
+.more-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40pt;
+    margin-bottom: 20pt;
+}
+
+.more-button {
+    font-family: "Source Han Gothic", monospace;
+    font-size: 16pt;
+    font-weight: 500;
+    color: var(--text-color);
+
+    margin: 0pt 5pt;
+    padding: 10pt 20pt;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--outline-color);
+    border-radius: 15pt;
+
+    text-decoration: none;
+}

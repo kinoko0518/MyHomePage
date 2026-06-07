@@ -23,19 +23,6 @@ stacks = [
 ]
 
 [[private_projects]]
-name = "Rust 3DS Developing"
-link = "https://note.com/takedabosciola/m/m24e853602327"
-cover = "images/sample_images/rust_3ds_dev.webp"
-description = "Rustで3DS向けの開発を行うためのチュートリアルです。もともとC言語向けのライブラリであるdevkitProのRust用ラッパーを使っています。noteで連載中です。"
-links = [
-    { img = "images/logos/github_icon.svg", link = "https://github.com/kinoko0518/Rust-3DS-Example" },
-    { img = "images/logos/note_icon.svg", link = "https://note.com/takedabosciola/m/m24e853602327" }
-]
-stacks = [
-    { img = "images/logos/rust.svg", link = "https://www.rust-lang.org/" }
-]
-
-[[private_projects]]
 name = "Dharma"
 link = "https://github.com/kinoko0518/DharmaNava"
 cover = "images/sample_images/dharma.png"

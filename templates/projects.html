@@ -1,40 +1,14 @@
 {% extends "base.html" %} {% import "macros.html" as m %} {% block content %}
 {% set projects = load_data(path="content/projects.toml") %}
 <main style="margin-left: 15%; margin-right: 15%">
-    <!-- Hero -->
-    <img src="{{ get_url(path='images/logo_modern.png') }}" class="logo" />
-
-    <div style="display: flex; justify-content: center">
-        <a href="https://note.com/takedabosciola">
-            <img
-                class="tip"
-                src="{{ get_url(path='images/logos/note.svg') }}"
-            />
-        </a>
-        <a href="https://xe-non.com/">
-            <img
-                class="tip"
-                src="{{ get_url(path='images/logos/xenon.svg') }}"
-            />
-        </a>
-        <a href="https://github.com/kinoko0518">
-            <img
-                class="tip"
-                src="{{ get_url(path='images/logos/github.png') }}"
-            />
-        </a>
-    </div>
-
-    <!-- Projects -->
-    <div class="majour_heading_container">
+    <!-- Private Projects -->
+    <div class="majour_heading_container" style="margin-top: 50pt;">
         <img class="dash" src="{{ get_url(path='images/dash.png') }}" />
-        <h1 class="majour_heading">Projects</h1>
+        <h1 class="majour_heading">Private Projects</h1>
     </div>
 
-    {% set_global displayed_count = 0 %}
     <div class="project-container">
         {% for project in projects.private_projects %}
-        {% if displayed_count < 6 %}
         {{ m::project_start(
             name=project.name,
             link=project.link,
@@ -65,13 +39,27 @@
         </div>
         {% endif %}
         {{ m::project_end() }}
-        {% set_global displayed_count = displayed_count + 1 %}
-        {% endif %}
         {% endfor %}
+    </div>
 
-        {% for group in projects.team_groups %}
+    <!-- Team Projects -->
+    <div class="majour_heading_container">
+        <img class="dash" src="{{ get_url(path='images/dash.png') }}" />
+        <h1 class="majour_heading">Team Projects</h1>
+    </div>
+
+    {% for group in projects.team_groups %}
+    <!-- {{ group.name }} -->
+    <a href="{{ group.link }}">
+        <img
+            src="{{ get_url(path=group.logo) }}"
+            height="65pt"
+            style="margin-top: 30pt; margin-bottom: 10pt"
+        />
+    </a>
+
+    <div class="project-container">
         {% for project in group.projects %}
-        {% if displayed_count < 6 %}
         {{ m::project_start(
             name=project.name,
             link=project.link,
@@ -102,15 +90,8 @@
         </div>
         {% endif %}
         {{ m::project_end() }}
-        {% set_global displayed_count = displayed_count + 1 %}
-        {% endif %}
-        {% endfor %}
         {% endfor %}
     </div>
-
-    <!-- More Button -->
-    <div class="more-button-container">
-        <a href="{{ get_url(path='projects/') }}" class="more-button">もっと見る</a>
-    </div>
+    {% endfor %}
 </main>
 {% endblock content %}
