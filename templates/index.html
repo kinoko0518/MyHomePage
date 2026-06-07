@@ -1,127 +1,121 @@
-{% extends "base.html" %}
-{% import "macros.html" as m %}
-
-{% block content %}
-<main style="margin-left: 15%; margin-right: 15%;">
+{% extends "base.html" %} {% import "macros.html" as m %} {% block content %}
+{% set projects = load_data(path="content/projects.toml") %}
+<main style="margin-left: 15%; margin-right: 15%">
     <!-- Hero -->
-    <img src="{{ get_url(path='images/logo_modern.png') }}" class="logo">
+    <img src="{{ get_url(path='images/logo_modern.png') }}" class="logo" />
 
-    <div style="display: flex; justify-content: center;">
+    <div style="display: flex; justify-content: center">
         <a href="https://note.com/takedabosciola">
-            <img class="tip" src="{{ get_url(path='images/logos/note.svg') }}">
+            <img
+                class="tip"
+                src="{{ get_url(path='images/logos/note.svg') }}"
+            />
         </a>
         <a href="https://xe-non.com/">
-            <img class="tip" src="{{ get_url(path='images/logos/xenon.svg') }}">
+            <img
+                class="tip"
+                src="{{ get_url(path='images/logos/xenon.svg') }}"
+            />
         </a>
         <a href="https://github.com/kinoko0518">
-            <img class="tip" src="{{ get_url(path='images/logos/github.png') }}">
+            <img
+                class="tip"
+                src="{{ get_url(path='images/logos/github.png') }}"
+            />
         </a>
     </div>
 
     <!-- Private Projects -->
     <div class="majour_heading_container">
-        <img class="dash" src="{{ get_url(path='images/dash.png') }}">
+        <img class="dash" src="{{ get_url(path='images/dash.png') }}" />
         <h1 class="majour_heading">Private Projects</h1>
     </div>
 
-    <div style="display: flex; align-items: stretch; gap: 10pt;">
+    <div class="project-container">
+        {% for project in projects.private_projects %}
         {{ m::project_start(
-            name="Dharma",
-            link="https://github.com/kinoko0518/DharmaNava",
-            cover="images/sample_images/dharma.png",
-            description="テスト勉強用に作った一問一答アプリです。問題形式は選択式/記述式で、TOML形式で問題を作ります。"
+            name=project.name,
+            link=project.link,
+            cover=project.cover,
+            description=project.description
         ) }}
-            <div style="display: flex; align-items: center; justify-content: center; gap: 5pt;">
-                {{ m::icon(img="images/logos/github_icon.svg", link="https://github.com/kinoko0518/DharmaNava") }}
-            </div>
-            <hr>
-            <div style="display: flex; align-items: center; justify-content: center;">
-                {{ m::icon(img="images/logos/rust.svg", link="https://www.rust-lang.org/") }}
-                {{ m::stack_separator() }}
-                {{ m::icon(img="images/logos/dioxus.svg", link="https://dioxuslabs.com/") }}
-            </div>
+        <div
+            style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5pt;
+            "
+        >
+            {% for l in project.links %}
+            {{ m::icon(img=l.img, link=l.link) }}
+            {% endfor %}
+        </div>
+        {% if project.stacks | length > 0 %}
+        <hr />
+        <div
+            style="display: flex; align-items: center; justify-content: center"
+        >
+            {% for s in project.stacks %}
+            {% if not loop.first %}{{ m::stack_separator() }}{% endif %}
+            {{ m::icon(img=s.img, link=s.link) }}
+            {% endfor %}
+        </div>
+        {% endif %}
         {{ m::project_end() }}
-
-        {{ m::project_start(
-            name="Rust 3DS Developing",
-            link="https://note.com/takedabosciola/m/m24e853602327",
-            cover="images/sample_images/rust_3ds_dev.webp",
-            description="Rustで3DS向けの開発を行うためのチュートリアルです。もともとC言語向けのライブラリであるdevkitProのRust用ラッパーを使っています。noteで連載中です。"
-        ) }}
-            <div style="display: flex; align-items: center; justify-content: center; gap: 5pt;">
-                {{ m::icon(img="images/logos/github_icon.svg", link="https://github.com/kinoko0518/Rust-3DS-Example") }}
-                {{ m::icon(img="images/logos/note_icon.svg", link="https://note.com/takedabosciola/m/m24e853602327") }}
-            </div>
-            <hr>
-            <div style="display: flex; align-items: center; justify-content: center;">
-                {{ m::icon(img="images/logos/rust.svg", link="https://www.rust-lang.org/") }}
-            </div>
-        {{ m::project_end() }}
+        {% endfor %}
     </div>
 
     <!-- Team Projects -->
     <div class="majour_heading_container">
-        <img class="dash" src="{{ get_url(path='images/dash.png') }}">
+        <img class="dash" src="{{ get_url(path='images/dash.png') }}" />
         <h1 class="majour_heading">Team Projects</h1>
     </div>
 
-    <!-- Xenon -->
-    <a href="https://xe-non.com/">
-        <img src="{{ get_url(path='images/logos/xenon.svg') }}"
-             height="65pt"
-             style="margin-top: 30pt; margin-bottom: 10pt;">
+    {% for group in projects.team_groups %}
+    <!-- {{ group.name }} -->
+    <a href="{{ group.link }}">
+        <img
+            src="{{ get_url(path=group.logo) }}"
+            height="65pt"
+            style="margin-top: 30pt; margin-bottom: 10pt"
+        />
     </a>
 
-    {{ m::project_start(
-        name="Etoile",
-        link="https://xe-non.com/",
-        cover="images/sample_images/etoile.png",
-        description="ゲームキューブで妖怪や鬼をブン殴るゲームです。現在はプロジェクトを凍結中です。"
-    ) }}
-        <div style="display: flex; align-items: center; justify-content: center; gap: 5pt;"></div>
-        <hr>
-        <div style="display: flex; align-items: center; justify-content: center;">
-            {{ m::icon(img="images/logos/godot.svg", link="https://godotengine.org") }}
+    <div class="project-container">
+        {% for project in group.projects %}
+        {{ m::project_start(
+            name=project.name,
+            link=project.link,
+            cover=project.cover,
+            description=project.description
+        ) }}
+        <div
+            style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5pt;
+            "
+        >
+            {% for l in project.links %}
+            {{ m::icon(img=l.img, link=l.link) }}
+            {% endfor %}
         </div>
-    {{ m::project_end() }}
-
-    <!-- Xenon++ -->
-    <a href="https://pp.xe-non.com/">
-        <img src="{{ get_url(path='images/logos/xenon++.svg') }}"
-             height="65pt"
-             style="margin-top: 30pt; margin-bottom: 10pt;">
-    </a>
-
-    <div style="display: flex; align-items: stretch; gap: 10pt;">
-        {{ m::project_start(
-            name="Boxfish Overflow!",
-            link="https://pp.xe-non.com/",
-            cover="images/sample_images/bfo.png",
-            description="4bitのレジスタを持つハコフグくんを動かして論理ゲートをくぐり、特定のビットパターンを作るゲームです。"
-        ) }}
-            <div style="display: flex; align-items: center; justify-content: center; gap: 5pt;">
-                {{ m::icon(img="images/logos/github_icon.svg", link="https://github.com/NIT-Tomakomai-2024J/BoxFishOverflow") }}
-            </div>
-            <hr>
-            <div style="display: flex; align-items: center; justify-content: center;">
-                {{ m::icon(img="images/logos/godot.svg", link="https://godotengine.org") }}
-            </div>
+        {% if project.stacks | length > 0 %}
+        <hr />
+        <div
+            style="display: flex; align-items: center; justify-content: center"
+        >
+            {% for s in project.stacks %}
+            {% if not loop.first %}{{ m::stack_separator() }}{% endif %}
+            {{ m::icon(img=s.img, link=s.link) }}
+            {% endfor %}
+        </div>
+        {% endif %}
         {{ m::project_end() }}
-
-        {{ m::project_start(
-            name="Cooking is Chemistry",
-            link="https://pp.xe-non.com/",
-            cover="images/sample_images/etoile.png",
-            description="冷戦下ソヴィエトの原子力研究所、危険物が溢れるキッチンで料理を作り、理不尽クッキングを生存せよ！"
-        ) }}
-            <div style="display: flex; align-items: center; justify-content: center; gap: 5pt;">
-                {{ m::icon(img="images/logos/github_icon.svg", link="https://github.com/netgame-nittc-2025-2/Cooking-is-Chemistry") }}
-            </div>
-            <hr>
-            <div style="display: flex; align-items: center; justify-content: center;">
-                {{ m::icon(img="images/logos/godot.svg", link="https://godotengine.org") }}
-            </div>
-        {{ m::project_end() }}
+        {% endfor %}
     </div>
+    {% endfor %}
 </main>
 {% endblock content %}

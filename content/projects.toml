@@ -1,0 +1,67 @@
+[[private_projects]]
+name = "CcfoliaTweaks"
+link = "https://github.com/kinoko0518/CcfoliaTweaks"
+cover = "images/sample_images/ccfolia_tweaks.png"
+description = "間違えてTRPGのログを消してしまったときに、ダウンロードしていたHTMLやら範囲選択してコピーしたテキストやらからログを復元するために一晩で作ったツールです。"
+links = [
+    { img = "images/logos/github_icon.svg", link = "https://github.com/kinoko0518/CcfoliaTweaks" }
+]
+stacks = [
+    { img = "images/logos/rust.svg", link = "https://www.rust-lang.org/" }
+]
+
+[[private_projects]]
+name = "aozora.rs"
+link = "https://github.com/kinoko0518/aozora-rs"
+cover = "images/sample_images/aozora-rs.png"
+description = "青空文庫書式を中間表現→XHTML→EPUBに変換する各段階ごとのクレートやGUIアプリ、WASMラッパーなどが集まったエコシステムです。"
+links = [
+    { img = "images/logos/github_icon.svg", link = "https://github.com/kinoko0518/aozora-rs" }
+]
+stacks = [
+    { img = "images/logos/rust.svg", link = "https://www.rust-lang.org/" }
+]
+
+[[private_projects]]
+name = "Rust 3DS Developing"
+link = "https://note.com/takedabosciola/m/m24e853602327"
+cover = "images/sample_images/rust_3ds_dev.webp"
+description = "Rustで3DS向けの開発を行うためのチュートリアルです。もともとC言語向けのライブラリであるdevkitProのRust用ラッパーを使っています。noteで連載中です。"
+links = [
+    { img = "images/logos/github_icon.svg", link = "https://github.com/kinoko0518/Rust-3DS-Example" },
+    { img = "images/logos/note_icon.svg", link = "https://note.com/takedabosciola/m/m24e853602327" }
+]
+stacks = [
+    { img = "images/logos/rust.svg", link = "https://www.rust-lang.org/" }
+]
+
+[[private_projects]]
+name = "Dharma"
+link = "https://github.com/kinoko0518/DharmaNava"
+cover = "images/sample_images/dharma.png"
+description = "テスト勉強用に作った一問一答アプリです。問題形式は選択式/記述式で、TOML形式で問題を作ります。"
+links = [
+    { img = "images/logos/github_icon.svg", link = "https://github.com/kinoko0518/DharmaNava" }
+]
+stacks = [
+    { img = "images/logos/rust.svg", link = "https://www.rust-lang.org/" },
+    { img = "images/logos/dioxus.svg", link = "https://dioxuslabs.com/" }
+]
+
+[[team_groups]]
+name = "xe-non"
+logo = "images/logos/xenon.svg"
+link = "https://xe-non.com/"
+projects = [
+    {
+        name = "Boxfish Overflow!",
+        link = "https://github.com/kinoko0518/Boxfish-Overflow-",
+        cover = "images/sample_images/boxfish-overflow.gif",
+        description = "4bitのレジスタを持つハコフグくんを動かして論理ゲートをくぐり、特定のビットパターンを作るゲームです。",
+        links = [{ img = "images/logos/github_icon.svg", link = "https://github.com/NIT-Tomakomai-2024J/BoxFishOverflow" }],
+        stacks = [
+            { img = "images/logos/rust.svg", link = "https://www.rust-lang.org/" },
+            { img = "images/logos/bevy.svg", link = "https://bevy.org/" }
+        ]
+    },
+]
