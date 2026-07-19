@@ -7,6 +7,7 @@
     <meta name="description" content="{{ config.description }}">
     <link rel="stylesheet" href="{{ get_url(path='css/general.css') }}">
     <link rel="stylesheet" href="{{ get_url(path='css/top_page.css') }}">
+    {% block extra_head %}{% endblock extra_head %}
 </head>
 <body>
     <header class="header">

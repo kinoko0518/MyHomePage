@@ -1,0 +1,293 @@
+.articles-main {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.article-main {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 50pt;
+}
+
+@media (max-width: 992px) {
+    .articles-main {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .article-main {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media (max-width: 576px) {
+    .articles-main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .article-main {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 30pt;
+    }
+}
+
+/* Articles section grid (2 columns) */
+.article-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 20pt;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.article {
+    display: flex;
+    flex-direction: column;
+    width: calc((100% - 20pt) / 3);
+    box-sizing: border-box;
+    border: 1px solid var(--outline-color);
+    backdrop-filter: blur(10px);
+    border-radius: 15pt;
+    padding: 20pt;
+}
+
+.article p {
+    flex-grow: 1;
+    margin-top: 10pt;
+    margin-bottom: 0;
+    font-size: 11pt;
+    line-height: 1.6;
+}
+
+.article .link {
+    align-self: flex-start;
+}
+
+/* Responsive adjustment for articles list */
+@media (max-width: 768px) {
+    .article {
+        width: 100%;
+    }
+}
+
+/* Individual Article Styles */
+.article-detail {
+    margin-bottom: 80pt;
+}
+
+.article-content {
+    font-family: "Source Pro Sans", sans-serif;
+    color: var(--text-color);
+    font-size: 12pt;
+    line-height: 1.8;
+}
+
+.article-content h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    margin-top: 40pt;
+    margin-bottom: 15pt;
+    border-bottom: 2px solid var(--outline-color);
+    padding-bottom: 5pt;
+}
+
+.article-content h2 {
+    font-size: 18pt;
+    font-weight: 700;
+    margin-top: 30pt;
+    margin-bottom: 12pt;
+    padding-left: 8pt;
+    border-left: 4px solid var(--text-color);
+}
+
+.article-content h3 {
+    font-size: 14pt;
+    font-weight: 700;
+    margin-top: 20pt;
+    margin-bottom: 10pt;
+}
+
+.article-content p {
+    margin-top: 0;
+    margin-bottom: 16pt;
+}
+
+.article-content blockquote {
+    margin: 20pt 0;
+    padding: 10pt 15pt;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-left: 4px solid var(--outline-color);
+    color: var(--middle-black);
+    font-style: italic;
+    border-radius: 0 8pt 8pt 0;
+}
+
+.article-content blockquote p {
+    margin: 0;
+}
+
+.article-content code {
+    font-family: "Google Sans Code", Consolas, Monaco, monospace;
+    font-size: 10.5pt;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 2pt 4pt;
+    border-radius: 4pt;
+}
+
+.article-content pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15pt;
+    border-radius: 10pt;
+    overflow-x: auto;
+    margin-top: 15pt;
+    margin-bottom: 15pt;
+}
+
+.article-content pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+    font-size: 10pt;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-top: 0;
+    margin-bottom: 16pt;
+    padding-left: 20pt;
+}
+
+.article-content li {
+    margin-bottom: 8pt;
+}
+
+/* Search & Filter Controls */
+.search-filter-section {
+    margin-top: 25pt;
+    margin-bottom: 25pt;
+    display: flex;
+    flex-direction: column;
+    gap: 15pt;
+}
+
+.search-bar-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10pt 16pt;
+    padding-right: 36pt;
+    box-sizing: border-box;
+    border: 1px solid var(--outline-color);
+    border-radius: 20pt;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    font-size: 11pt;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.search-input:focus {
+    border-color: var(--text-color);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: 12pt;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--middle-white);
+    font-size: 12pt;
+    cursor: pointer;
+    padding: 2pt 6pt;
+    transition: color 0.2s ease;
+}
+
+.search-clear-btn:hover {
+    color: var(--text-color);
+}
+
+.tag-filter-container {
+    display: flex;
+    align-items: center;
+    gap: 10pt;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-size: 10.5pt;
+    color: var(--middle-white);
+}
+
+.tag-buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6pt;
+}
+
+.tag-filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--outline-color);
+    border-radius: 12pt;
+    color: var(--middle-white);
+    padding: 4pt 12pt;
+    font-size: 10pt;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag-filter-btn:hover {
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+.tag-filter-btn.active {
+    background: var(--text-color);
+    color: var(--bg-color, #000);
+    border-color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Article Tags Badge */
+.article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5pt;
+    margin-top: 10pt;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 9pt;
+    padding: 2pt 8pt;
+    border-radius: 10pt;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--middle-white);
+    border: 1px solid var(--outline-color);
+}
+
+.tag-dir {
+    background: rgba(100, 149, 237, 0.2);
+    color: #8ab4f8;
+    border-color: rgba(100, 149, 237, 0.4);
+    font-weight: 600;
+}
+
+/* No Results Message */
+.no-results-message {
+    text-align: center;
+    padding: 40pt 20pt;
+    color: var(--middle-white);
+    font-size: 12pt;
+}

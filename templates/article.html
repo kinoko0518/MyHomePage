@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ get_url(path='css/article.css') }}">
+{% endblock extra_head %}
+
+{% block content %}
+<main class="article-main">
+    <article class="article-detail">
+        <header>
+            <h1 style="font-family: 'Source Han Gothic', sans-serif; font-size: 28pt; margin-bottom: 10pt;">{{ page.title }}</h1>
+            <div style="color: var(--middle-white); font-size: 11pt; margin-bottom: 20pt;">
+                <span>公開日: {{ page.date | date(format="%Y-%m-%d") }}</span>
+            </div>
+            {% if page.extra %}
+                {% if page.extra.cover %}
+                <img src="{{ get_url(path=page.extra.cover) }}" style="width: 100%; border-radius: 15pt; border: 1px solid var(--outline-color); margin-bottom: 30pt; max-height: 400px; object-fit: cover;">
+                {% endif %}
+            {% endif %}
+        </header>
+        <section class="article-content">
+            {{ page.content | safe }}
+        </section>
+    </article>
+</main>
+{% endblock content %}

@@ -20,3 +20,37 @@
 {% macro stack_separator() %}
 <img src="{{ get_url(path='images/plus.svg') }}" width="10pt" height="10pt">
 {% endmacro %}
+
+{% macro article_card(title, link, cover, abstract, date, dir_tag="", tags="") %}
+{% set_global combined_tags = dir_tag %}
+{% if tags %}
+    {% for tag in tags %}
+        {% if combined_tags != "" %}
+            {% set_global combined_tags = combined_tags ~ "," ~ tag %}
+        {% else %}
+            {% set_global combined_tags = tag %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<div class="article" data-title="{{ title | lower }}" data-abstract="{{ abstract | lower }}" data-tags="{{ combined_tags }}">
+    {% if cover %}
+    <img class="sample" src="{{ get_url(path=cover) }}">
+    {% endif %}
+    <div class="article-tags">
+        {% if dir_tag != "" %}
+        <span class="tag tag-dir">{{ dir_tag }}</span>
+        {% endif %}
+        {% if tags %}
+            {% for tag in tags %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <a style="font-size: 15pt; font-weight: 800; margin-top: 8pt;"
+       href="{{ link }}"
+       class="link">{{ title }}</a>
+    <span style="font-size: 10pt; color: var(--middle-white); margin-top: 5pt; margin-bottom: 5pt;">{{ date | date(format="%Y-%m-%d") }}</span>
+    <p>{{ abstract }}</p>
+</div>
+{% endmacro %}
+

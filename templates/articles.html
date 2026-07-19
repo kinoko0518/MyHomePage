@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ get_url(path='css/article.css') }}">
+<script defer src="{{ get_url(path='js/article_search.js') }}"></script>
+{% endblock extra_head %}
+
+{% block content %}
+<main class="articles-main">
+    <!-- Articles Header -->
+    <div class="majour_heading_container" style="margin-top: 50pt;">
+        <img class="dash" src="{{ get_url(path='images/dash.png') }}" />
+        <h1 class="majour_heading">Articles</h1>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="search-filter-section">
+        <div class="search-bar-container">
+            <input type="text" id="article-search-input" class="search-input" placeholder="キーワードで検索 (タイトル、概要)..." autocomplete="off" />
+            <button id="search-clear-btn" class="search-clear-btn" title="検索をクリア" style="display: none;">✕</button>
+        </div>
+        <div class="tag-filter-container">
+            <span class="filter-label">タグ絞り込み:</span>
+            <div id="tag-buttons-wrapper" class="tag-buttons-wrapper">
+                <button class="tag-filter-btn active" data-tag="all">すべて</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Articles List -->
+    <div class="article-container" id="article-list-container" style="margin-top: 20pt;">
+        {% set root_sec = get_section(path="articles/_index.md") %}
+        {% set_global all_articles = root_sec.pages %}
+        {% for sub_path in root_sec.subsections %}
+            {% set sub_sec = get_section(path=sub_path) %}
+            {% set_global all_articles = all_articles | concat(with=sub_sec.pages) %}
+        {% endfor %}
+        {% set articles_list = all_articles | unique(attribute="permalink") | sort(attribute="date") | reverse %}
+        {% for article in articles_list %}
+        {% if article.extra %}
+            {% set cover = article.extra.cover | default(value="") %}
+            {% set abstract = article.extra.abstract | default(value="") %}
+            {% set extra_tags = article.extra.tags | default(value=[]) %}
+        {% else %}
+            {% set cover = "" %}
+            {% set abstract = "" %}
+            {% set extra_tags = [] %}
+        {% endif %}
+        {% set tags = article.taxonomies.tags | default(value=extra_tags) %}
+        {% if article.components | length > 2 %}
+            {% set dir_tag = article.components[1] %}
+        {% else %}
+            {% set dir_tag = "" %}
+        {% endif %}
+        {{ m::article_card(
+            title=article.title,
+            link=article.permalink,
+            cover=cover,
+            abstract=abstract,
+            date=article.date,
+            dir_tag=dir_tag,
+            tags=tags
+        ) }}
+        {% endfor %}
+    </div>
+
+    <!-- No Results Message -->
+    <div id="no-results-message" class="no-results-message" style="display: none;">
+        <p>該当する記事が見つかりませんでした。</p>
+    </div>
+</main>
+{% endblock content %}

@@ -1,4 +1,10 @@
-{% extends "base.html" %} {% import "macros.html" as m %} {% block content %}
+{% extends "base.html" %} {% import "macros.html" as m %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ get_url(path='css/article.css') }}">
+{% endblock extra_head %}
+
+{% block content %}
 {% set projects = load_data(path="content/projects.toml") %}
 <main style="margin-left: 15%; margin-right: 15%">
     <!-- Hero -->
@@ -111,6 +117,53 @@
     <!-- More Button -->
     <div class="more-button-container">
         <a href="{{ get_url(path='projects/') }}" class="more-button">もっと見る</a>
+    </div>
+
+    <!-- Articles -->
+    <div class="majour_heading_container">
+        <img class="dash" src="{{ get_url(path='images/dash.png') }}" />
+        <h1 class="majour_heading">Articles</h1>
+    </div>
+
+    <div class="article-container" style="margin-top: 30pt;">
+        {% set root_sec = get_section(path="articles/_index.md") %}
+        {% set_global all_articles = root_sec.pages %}
+        {% for sub_path in root_sec.subsections %}
+            {% set sub_sec = get_section(path=sub_path) %}
+            {% set_global all_articles = all_articles | concat(with=sub_sec.pages) %}
+        {% endfor %}
+        {% set articles_list = all_articles | unique(attribute="permalink") | sort(attribute="date") | reverse %}
+        {% for article in articles_list | slice(end=6) %}
+        {% if article.extra %}
+            {% set cover = article.extra.cover | default(value="") %}
+            {% set abstract = article.extra.abstract | default(value="") %}
+            {% set extra_tags = article.extra.tags | default(value=[]) %}
+        {% else %}
+            {% set cover = "" %}
+            {% set abstract = "" %}
+            {% set extra_tags = [] %}
+        {% endif %}
+        {% set tags = article.taxonomies.tags | default(value=extra_tags) %}
+        {% if article.components | length > 2 %}
+            {% set dir_tag = article.components[1] %}
+        {% else %}
+            {% set dir_tag = "" %}
+        {% endif %}
+        {{ m::article_card(
+            title=article.title,
+            link=article.permalink,
+            cover=cover,
+            abstract=abstract,
+            date=article.date,
+            dir_tag=dir_tag,
+            tags=tags
+        ) }}
+        {% endfor %}
+    </div>
+
+    <!-- More Button -->
+    <div class="more-button-container">
+        <a href="{{ get_url(path='articles/') }}" class="more-button">もっと見る</a>
     </div>
 </main>
 {% endblock content %}
